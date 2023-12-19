@@ -902,7 +902,7 @@ class GraphormerForGraphClassification(GraphormerPreTrainedModel):
 
             if self.num_classes == 1:  # regression
                 loss_fct = MSELoss()
-                loss = loss_fct(logits[mask].squeeze(), labels[mask].squeeze().float())
+                loss = loss_fct(logits[mask].squeeze().float(), labels[mask].squeeze().float())
             elif self.num_classes > 1 and len(labels.shape) == 1:  # One task classification
                 loss_fct = CrossEntropyLoss()
                 loss = loss_fct(logits[mask].view(-1, self.num_classes), labels[mask].view(-1))
